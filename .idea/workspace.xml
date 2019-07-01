@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8394761-c027-4334-b264-ed37d9a41336" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/apiMashup/All.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/apiMashup/Application.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,11 +30,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/apiMashup/All.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/apiMashup/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+            <state relative-caret-position="234">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#405#406#0" expanded="true" />
                 <element signature="e#467#468#0" expanded="true" />
               </folding>
@@ -45,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="11" lean-forward="true" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+            <state relative-caret-position="-39">
+              <caret line="52" column="116" lean-forward="true" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="116" />
             </state>
           </provider>
         </entry>
@@ -96,6 +97,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>directory</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -105,6 +111,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/apiMashup/Greeting.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/apiMashup/GreetingController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/apiMashup/All.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/apiMashup/Application.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
@@ -159,6 +166,27 @@
               <item name="api-mashup" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="apiMashup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-mashup" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-mashup" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-mashup" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-mashup" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api-mashup" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api-mashup" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="apiMashup" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -273,11 +301,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/apiMashup/All.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/apiMashup/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        <state relative-caret-position="234">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#405#406#0" expanded="true" />
             <element signature="e#467#468#0" expanded="true" />
           </folding>
@@ -286,8 +315,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="11" lean-forward="true" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+        <state relative-caret-position="-39">
+          <caret line="52" column="116" lean-forward="true" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="116" />
         </state>
       </provider>
     </entry>
