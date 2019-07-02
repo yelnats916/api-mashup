@@ -1,7 +1,5 @@
 package com.apiMashup.Controllers;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -9,18 +7,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 import com.apiMashup.ApiMashupException;
+import com.apiMashup.GithubRepo;
 
 public class GithubController {
     String endpoint;
@@ -54,8 +50,9 @@ public class GithubController {
         }
     }
 
-    public ArrayList<JSONObject> sendRequest() throws Exception {
+    public ArrayList<GithubRepo> sendRequest() throws Exception {
         int count = 0;
+        GithubRepo repo;
         try {
             checkConnection();
             InputStream inputStream = conn.getInputStream();
@@ -69,13 +66,14 @@ public class GithubController {
 
             ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-            ArrayList<JSONObject> al = new ArrayList<JSONObject>();
+            ArrayList<GithubRepo> al = new ArrayList<GithubRepo>();
 
             while (i.hasNext() && count < 10) {
                 JSONObject jsonRepo = (JSONObject) i.next();
-                al.add(jsonRepo);
+                al.add(mapper.readValue(jsonRepo.toJSONString(), GithubRepo.class));
                 count++;
             }
+
             return al;
 
 

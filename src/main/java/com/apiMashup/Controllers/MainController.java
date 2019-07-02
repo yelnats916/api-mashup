@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.apiMashup.ApiMashupException;
+import com.apiMashup.GithubRepo;
 
 @RestController
 public class MainController {
@@ -16,7 +17,7 @@ public class MainController {
     GithubController githubController;
 
     @RequestMapping("/githubTwitter")
-    public ArrayList<JSONObject> githubTwitter(@RequestParam(value="queryParm", defaultValue="Reactive") String queryParm) throws Exception {
+    public ArrayList<GithubRepo> githubTwitter(@RequestParam(value="queryParm", defaultValue="Reactive") String queryParm) throws Exception {
         try {
             githubController = new GithubController("https://api.github.com/search/repositories", queryParm);
             return githubController.sendRequest();
