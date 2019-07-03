@@ -1,35 +1,51 @@
 package com.apiMashup.Controllers;
-import org.springframework.stereotype.*;
+import com.apiMashup.ApiMashupException;
+import com.apiMashup.TwitterAuthConfig;
 import org.springframework.beans.factory.annotation.*;
-
+import org.springframework.stereotype.Component;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
+import twitter4j.Status;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 @Component
 public class TwitterController {
-    @Value("${oauth.consumerKey}")
-    String consumerKey;
-    @Value("${oauth.consumerSecret}")
-    String consumerSecret;
-    @Value("${oauth.accessToken}")
-    String accessToken;
-    @Value("${oauth.accessTokenSecret}")
-    String accessTokenSecret;
+    @Autowired
+    TwitterAuthConfig config;
 
     Twitter twitter;
 
-    public TwitterController() {
+    @PostConstruct
+    public void setupTwitterObject() {
+        System.out.println(config);
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(consumerKey)
-                .setOAuthConsumerSecret(consumerSecret)
-                .setOAuthAccessToken(accessToken)
-                .setOAuthAccessTokenSecret(accessTokenSecret);
+                .setOAuthConsumerKey(config.getConsumerKey())
+                .setOAuthConsumerSecret(config.getConsumerSecret())
+                .setOAuthAccessToken(config.getAccessToken())
+                .setOAuthAccessTokenSecret(config.getAccessTokenSecret());
         TwitterFactory tf = new TwitterFactory(cb.build());
-        Twitter twitter = tf.getInstance();
+        twitter = tf.getInstance();
     }
 
-    public void sendRequest() {
-
+    public List<Status> queryForTweets(String searchQuery) throws Exception {
+        try {
+            Query query = new Query(searchQuery);
+            QueryResult result = twitter.search(query);
+            List<Status> statuses = result.getTweets();
+            for (Status tweet : statuses) {
+                System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+            }
+            return statuses;
+            //for (Status tweet : tweets) {
+            //    System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+            //}
+        } catch (Exception e) {
+            throw new ApiMashupException("Error sending request to Twitter", e);
+        }
     }
+
 }
