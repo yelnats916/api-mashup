@@ -4,7 +4,7 @@ Combines GET request to Github API and Twitter to return summary of Github repos
 
 How to run:  
 1. Build package:  
-mvn package spring-boot:repackage  :x
+mvn package spring-boot:repackage  
 
 2. Run server (replace 'x's with twitter consumer key and secret):  
 java -jar target/api-mashup-1.0-SNAPSHOT.jar  
