@@ -1,8 +1,8 @@
 package com.apiMashup.Controllers;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import com.apiMashup.ProjectSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.apiMashup.ApiMashupException;
 import com.apiMashup.GithubRepo;
-import twitter4j.Status;
 
 @RestController
 public class MainController {
@@ -19,14 +18,18 @@ public class MainController {
     TwitterController twitterController;
 
     @RequestMapping("/githubTwitter")
-    public ArrayList<GithubRepo> githubTwitter(@RequestParam(value="q", defaultValue="Reactive") String queryParm) throws Exception {
+    public ArrayList<ProjectSummary> githubTwitterReq(@RequestParam(value="q", defaultValue="Reactive") String queryParm) throws Exception {
+        ArrayList<GithubRepo> repos;
+        ArrayList<ProjectSummary> summaries = new ArrayList<>();
         try {
-            twitterController.queryForTweets("ReactiveCocoa");
             githubController = new GithubController("https://api.github.com/search/repositories", queryParm);
-
-            return githubController.sendRequest();
+            repos = githubController.sendRequest();
+            for (GithubRepo repo : repos) {
+                summaries.add(new ProjectSummary(repo, twitterController.queryForTweets(repo.getName())));
+            }
+            return summaries;
         } catch (Exception e) {
-            throw new ApiMashupException("Error on MainController", e);
+            throw new ApiMashupException("Failure to send request", e);
         }
     }
 }

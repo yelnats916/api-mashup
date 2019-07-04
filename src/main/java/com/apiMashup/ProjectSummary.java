@@ -2,9 +2,11 @@ package com.apiMashup;
 
 import lombok.*;
 
+import java.util.ArrayList;
+
 @Data
+@AllArgsConstructor
 public class ProjectSummary {
-    private String owner;
-    private String repoName;
-    private String tweet;
+    private GithubRepo repo;
+    private ArrayList<TweetData> tweets;
 }

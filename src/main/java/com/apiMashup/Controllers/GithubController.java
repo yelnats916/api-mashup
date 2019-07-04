@@ -17,11 +17,15 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 
 import com.apiMashup.ApiMashupException;
 import com.apiMashup.GithubRepo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GithubController {
     String endpoint;
     String query;
     HttpURLConnection conn;
+
+    Logger logger = LoggerFactory.getLogger(GithubController.class);
 
     public GithubController(String endpoint, String query) {
         this.endpoint = endpoint;
@@ -34,25 +38,33 @@ public class GithubController {
 
     private void checkConnection() throws Exception {
         int responseCode;
+        String errStr;
         String endpointWithQueryParm = endpointWithQueryParm();
         try {
             URL url = new URL(endpointWithQueryParm);
             conn = (HttpURLConnection)url.openConnection();
             responseCode = conn.getResponseCode();
             if (responseCode != 200) {
-                throw new ApiMashupException(String.format("Failed to connect to Github. Error code %d returned", responseCode));
+                errStr = String.format("Failed to connect to Github. Error code %d returned", responseCode);
+                logger.error(errStr);
+                throw new ApiMashupException(errStr);
             }
+            logger.info("Successfully opened connection to Github!");
         } catch (MalformedURLException e) {
-            throw new ApiMashupException(String.format("Malformed URL: endpoint %s invalid", endpoint), e);
+            errStr = String.format("Malformed URL: endpoint %s invalid", endpoint);
+            logger.error(errStr);
+            throw new ApiMashupException(errStr, e);
         } catch (Exception e) {
-            //log here
-            throw new ApiMashupException("Failed to connect to Github.", e);
+            errStr = "Failed to connect to Github.";
+            logger.error(errStr);
+            throw new ApiMashupException(errStr, e);
         }
     }
 
     public ArrayList<GithubRepo> sendRequest() throws Exception {
         int count = 0;
         GithubRepo repo;
+        String errStr;
         try {
             checkConnection();
             InputStream inputStream = conn.getInputStream();
@@ -73,12 +85,11 @@ public class GithubController {
                 al.add(mapper.readValue(jsonRepo.toJSONString(), GithubRepo.class));
                 count++;
             }
-
             return al;
-
-
         } catch (Exception e) {
-            throw new ApiMashupException("Failed to send Request");
+            errStr = "Failed to send GET Request to Github";
+            logger.error(errStr);
+            throw new ApiMashupException(errStr, e);
         }
     }
 }

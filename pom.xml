@@ -137,7 +137,7 @@
     </pluginManagement>
     <resources>
       <resource>
-        <directory>src/main/java</directory>
+        <directory>src/main</directory>
         <excludes>
           <exclude>**/*.java</exclude>
         </excludes>
